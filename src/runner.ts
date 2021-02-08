@@ -158,7 +158,10 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
 
   await waitForExit(child, timeout)
   
-  partial=+output
+  partial=parseInt(normalizeLineEndings(output),10)
+  if(isNaN(partial)){
+    log('partial is NaN')
+  }
   log(`---------------output=${output}`)
   // Eventually work off the the test type
   if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
@@ -228,7 +231,7 @@ export const runAll = async (tests: Array<Test>, cwd: string): Promise<void> => 
       if (test.points) {
         //points += test.points
         points+=partial
-        partial=0
+        //partial=0
       }
     } catch (error) {
       failed = true
