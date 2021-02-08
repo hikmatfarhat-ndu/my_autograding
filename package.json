@@ -2,7 +2,7 @@
   "name": "autograding",
   "version": "1.0.0",
   "description": "A modification of autograding GitHub Classroom",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc --noEmit && ncc build src/autograding.ts -o dist",
     "test": "tsc --noEmit && jest",
