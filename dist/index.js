@@ -28023,6 +28023,11 @@ const runCommand = async (test, cwd, timeout) => {
         child.stdin.end();
     }
     await waitForExit(child, timeout);
+    log('----------------------');
+    log('----------------------');
+    log(' CHECKOUT OUTPUT ');
+    log('----------------------');
+    log('----------------------');
     // Eventually work off the the test type
     if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
         return;
@@ -28057,8 +28062,7 @@ exports.run = async (test, cwd) => {
     const elapsed = process.hrtime(start);
     // Subtract the elapsed seconds (0) and nanoseconds (1) to find the remaining timeout
     timeout -= Math.floor(elapsed[0] * 1000 + elapsed[1] / 1000000);
-    let ret = await runCommand(test, cwd, timeout);
-    log(`test return value ${ret}`);
+    await runCommand(test, cwd, timeout);
 };
 exports.runAll = async (tests, cwd) => {
     let points = 0;
