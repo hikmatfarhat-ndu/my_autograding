@@ -28021,7 +28021,6 @@ const runCommand = async (test, cwd, timeout) => {
         grades += chunk;
     });
     //partial=+grades
-    partial = +grades;
     // Preload the inputs
     if (test.input && test.input !== '') {
         child.stdin.write(test.input);
@@ -28033,6 +28032,7 @@ const runCommand = async (test, cwd, timeout) => {
     log(`grade = ${grades}`);
     log('----------------------');
     log('----------------------');
+    partial = +grades;
     // Eventually work off the the test type
     if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
         return;
