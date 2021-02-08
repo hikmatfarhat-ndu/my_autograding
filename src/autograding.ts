@@ -17,6 +17,7 @@ const run = async (): Promise<void> => {
   } catch (error) {
     // If there is any error we'll fail the action with the error message
     console.error(error.message)
+    console.error("FROM autograding.ts")
     core.setFailed(`Autograding failure: ${error}`)
   }
 }

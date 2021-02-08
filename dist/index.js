@@ -14,16 +14,9 @@ const github = __nccwpck_require__(8408);
 const { runInContext } = __nccwpck_require__(2184);
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  //const nameToGreet = core.getInput('who-to-greet');
-  //console.log(`Hello ${nameToGreet}!`);
-  //const time = (new Date()).toTimeString();
-  //core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  //const payload = JSON.stringify(github.context.payload, undefined, 2)
-  //console.log(`The event payload: ${payload}`);
   ;(0,_src_autograding__WEBPACK_IMPORTED_MODULE_0__.run)();
 } catch (error) {
+  console.error("from index.js")
   core.setFailed(error.message);
 }
 
@@ -27786,6 +27779,7 @@ const run = async () => {
     catch (error) {
         // If there is any error we'll fail the action with the error message
         console.error(error.message);
+        console.error("FROM autograding.ts");
         core.setFailed(`Autograding failure: ${error}`);
     }
 };
@@ -28024,11 +28018,15 @@ const runCommand = async (test, cwd, timeout) => {
         child.stdin.end();
     }
     await waitForExit(child, timeout);
-    partial = parseInt(normalizeLineEndings(output), 10);
-    if (isNaN(partial)) {
-        log('partial is NaN');
+    if (test.partial) {
+        // if the user selected the partial option
+        // the the output is the points awarded
+        //WARNING: in that case direct all other
+        //output to standard error
+        //ALSO make sure that the test does not
+        //exit with code !=0
+        partial = parseInt(normalizeLineEndings(output), 10);
     }
-    log(`---------------output=${output}`);
     // Eventually work off the the test type
     if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
         return;
@@ -28082,25 +28080,27 @@ exports.runAll = async (tests, cwd) => {
                 hasPoints = true;
                 availablePoints += test.points;
             }
-            log(color.cyan(`📝 ${test.name}`));
+            log(color.cyan(`STARTING 📝 ${test.name}`));
             log('');
             await exports.run(test, cwd);
             log('');
             log(color.green(`✅ ${test.name}`));
             log(``);
             if (test.points) {
-                //points += test.points
-                log(` partial is ${partial}`);
-                if (isNaN(partial)) {
-                    log('partial is NaN');
-                    partial = 0;
+                if (!test.partial) {
+                    points += test.points;
                 }
-                points += partial;
+                else {
+                    if (isNaN(partial)) {
+                        partial = 0;
+                    }
+                    points += partial;
+                }
             }
         }
         catch (error) {
             failed = true;
-            log('');
+            log('ERROR ERROR ERROR');
             log(color.red(`❌ ${test.name}`));
             core.setFailed(error.message);
         }

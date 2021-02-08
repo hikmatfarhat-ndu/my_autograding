@@ -19,6 +19,7 @@ export interface Test {
   readonly output?: string
   readonly timeout: number
   readonly points?: number
+  readonly partial?:string
   readonly comparison: TestComparison
 }
 
@@ -158,11 +159,15 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
 
   await waitForExit(child, timeout)
   
-  partial=parseInt(normalizeLineEndings(output),10)
-  if(isNaN(partial)){
-    log('partial is NaN')
+  if(test.partial){
+    // if the user selected the partial option
+    // the the output is the points awarded
+    //WARNING: in that case direct all other
+    //output to standard error
+    //ALSO make sure that the test does not
+    //exit with code !=0
+    partial=parseInt(normalizeLineEndings(output),10)
   }
-  log(`---------------output=${output}`)
   // Eventually work off the the test type
   if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
     return
@@ -222,24 +227,26 @@ export const runAll = async (tests: Array<Test>, cwd: string): Promise<void> => 
         hasPoints = true
         availablePoints += test.points
       }
-      log(color.cyan(`📝 ${test.name}`))
+      log(color.cyan(`STARTING 📝 ${test.name}`))
       log('')
       await run(test, cwd)
       log('')
       log(color.green(`✅ ${test.name}`))
       log(``)
       if (test.points) {
-        //points += test.points
-        log(` partial is ${partial}`)
-        if(isNaN(partial)){
-          log('partial is NaN')
-          partial=0
+        if(!test.partial){
+          points += test.points
         }
-        points+=partial
+        else {
+          if(isNaN(partial)){
+           partial=0
+          }
+           points+=partial
+        }
       }
     } catch (error) {
       failed = true
-      log('')
+      log('ERROR ERROR ERROR')
       log(color.red(`❌ ${test.name}`))
       core.setFailed(error.message)
     }
