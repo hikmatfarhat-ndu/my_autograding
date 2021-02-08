@@ -28008,6 +28008,7 @@ const runCommand = async (test, cwd, timeout) => {
         },
     });
     let output = '';
+    let grades = '';
     // Start with a single new line
     process.stdout.write(indent('\n'));
     child.stdout.on('data', chunk => {
@@ -28016,6 +28017,7 @@ const runCommand = async (test, cwd, timeout) => {
     });
     child.stderr.on('data', chunk => {
         process.stderr.write(indent(chunk));
+        grades += chunk;
     });
     // Preload the inputs
     if (test.input && test.input !== '') {
@@ -28025,7 +28027,7 @@ const runCommand = async (test, cwd, timeout) => {
     await waitForExit(child, timeout);
     log('----------------------');
     log('----------------------');
-    log(' CHECKOUT OUTPUT ');
+    log(`grade = ${grades}`);
     log('----------------------');
     log('----------------------');
     // Eventually work off the the test type

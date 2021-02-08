@@ -135,7 +135,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
   })
 
   let output = ''
-
+  let grades=''
   // Start with a single new line
   process.stdout.write(indent('\n'))
 
@@ -146,6 +146,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
 
   child.stderr.on('data', chunk => {
     process.stderr.write(indent(chunk))
+    grades+=chunk
   })
 
   // Preload the inputs
@@ -157,7 +158,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
   await waitForExit(child, timeout)
   log('----------------------')
   log('----------------------')
-  log(' CHECKOUT OUTPUT ')
+  log(`grade = ${grades}`)
   log('----------------------')
   log('----------------------')
   // Eventually work off the the test type
