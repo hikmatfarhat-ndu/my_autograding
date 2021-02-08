@@ -28057,7 +28057,8 @@ exports.run = async (test, cwd) => {
     const elapsed = process.hrtime(start);
     // Subtract the elapsed seconds (0) and nanoseconds (1) to find the remaining timeout
     timeout -= Math.floor(elapsed[0] * 1000 + elapsed[1] / 1000000);
-    await runCommand(test, cwd, timeout);
+    let ret = await runCommand(test, cwd, timeout);
+    log(`test return value ${ret}`);
 };
 exports.runAll = async (tests, cwd) => {
     let points = 0;
