@@ -159,6 +159,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
   await waitForExit(child, timeout)
   
   partial=+output
+  log(`---------------output=${output}`)
   // Eventually work off the the test type
   if ((!test.output || test.output == '') && (!test.input || test.input == '')) {
     return
