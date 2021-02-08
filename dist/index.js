@@ -15,14 +15,14 @@ const { runInContext } = __nccwpck_require__(2184);
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
+  //const nameToGreet = core.getInput('who-to-greet');
+  //console.log(`Hello ${nameToGreet}!`);
+  //const time = (new Date()).toTimeString();
+  //core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-  (0,_src_autograding__WEBPACK_IMPORTED_MODULE_0__.run)();
+  //const payload = JSON.stringify(github.context.payload, undefined, 2)
+  //console.log(`The event payload: ${payload}`);
+  ;(0,_src_autograding__WEBPACK_IMPORTED_MODULE_0__.run)();
 } catch (error) {
   core.setFailed(error.message);
 }
