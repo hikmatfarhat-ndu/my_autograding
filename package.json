@@ -1,6 +1,6 @@
 {
-  "name": "hikmat-autograding",
-  "version": "0.0.1",
+  "name": "autograding",
+  "version": "1.0.0",
   "description": "A modification of autograding GitHub Classroom",
   "main": "dist/index.js",
   "scripts": {
