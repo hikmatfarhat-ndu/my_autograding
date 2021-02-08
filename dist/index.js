@@ -27911,6 +27911,7 @@ const output_1 = __nccwpck_require__(3400);
 const os = __importStar(__nccwpck_require__(2087));
 const chalk_1 = __importDefault(__nccwpck_require__(2924));
 const color = new chalk_1.default.Instance({ level: 1 });
+var partial;
 class TestError extends Error {
     constructor(message) {
         super(message);
@@ -28019,6 +28020,8 @@ const runCommand = async (test, cwd, timeout) => {
         process.stderr.write(indent(chunk));
         grades += chunk;
     });
+    //partial=+grades
+    partial = 1;
     // Preload the inputs
     if (test.input && test.input !== '') {
         child.stdin.write(test.input);
@@ -28056,6 +28059,7 @@ const runCommand = async (test, cwd, timeout) => {
             break;
     }
 };
+//setup a single test then call runCommand
 exports.run = async (test, cwd) => {
     // Timeouts are in minutes, but need to be in ms
     let timeout = (test.timeout || 1) * 60 * 1000 || 30000;
@@ -28089,7 +28093,9 @@ exports.runAll = async (tests, cwd) => {
             log(color.green(`✅ ${test.name}`));
             log(``);
             if (test.points) {
-                points += test.points;
+                //points += test.points
+                points += partial;
+                partial = 0;
             }
         }
         catch (error) {

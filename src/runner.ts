@@ -9,6 +9,7 @@ import chalk from 'chalk'
 const color = new chalk.Instance({level: 1})
 
 export type TestComparison = 'exact' | 'included' | 'regex'
+var partial:number
 
 export interface Test {
   readonly name: string
@@ -148,7 +149,8 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
     process.stderr.write(indent(chunk))
     grades+=chunk
   })
-
+  //partial=+grades
+  partial=1
   // Preload the inputs
   if (test.input && test.input !== '') {
     child.stdin.write(test.input)
@@ -189,7 +191,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
       break
   }
 }
-
+//setup a single test then call runCommand
 export const run = async (test: Test, cwd: string): Promise<void> => {
   // Timeouts are in minutes, but need to be in ms
   let timeout = (test.timeout || 1) * 60 * 1000 || 30000
@@ -227,7 +229,9 @@ export const runAll = async (tests: Array<Test>, cwd: string): Promise<void> => 
       log(color.green(`✅ ${test.name}`))
       log(``)
       if (test.points) {
-        points += test.points
+        //points += test.points
+        points+=partial
+        partial=0
       }
     } catch (error) {
       failed = true
