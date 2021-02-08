@@ -28090,8 +28090,12 @@ exports.runAll = async (tests, cwd) => {
             log(``);
             if (test.points) {
                 //points += test.points
+                log(` partial is ${partial}`);
+                if (isNaN(partial)) {
+                    log('partial is NaN');
+                    partial = 0;
+                }
                 points += partial;
-                //partial=0
             }
         }
         catch (error) {
