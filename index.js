@@ -6,5 +6,5 @@ try {
   run();
 } catch (error) {
   console.error("from index.js")
-  core.setFailed(error.message);
+  //core.setFailed(error.message);
 }

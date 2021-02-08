@@ -17,7 +17,7 @@ try {
   ;(0,_src_autograding__WEBPACK_IMPORTED_MODULE_0__.run)();
 } catch (error) {
   console.error("from index.js")
-  core.setFailed(error.message);
+  //core.setFailed(error.message);
 }
 
 
