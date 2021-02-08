@@ -150,8 +150,9 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
     grades+=chunk
   })
   //partial=+grades
-  partial=1
+  partial=+grades
   // Preload the inputs
+
   if (test.input && test.input !== '') {
     child.stdin.write(test.input)
     child.stdin.end()

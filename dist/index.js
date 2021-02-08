@@ -28021,7 +28021,7 @@ const runCommand = async (test, cwd, timeout) => {
         grades += chunk;
     });
     //partial=+grades
-    partial = 1;
+    partial = +grades;
     // Preload the inputs
     if (test.input && test.input !== '') {
         child.stdin.write(test.input);
