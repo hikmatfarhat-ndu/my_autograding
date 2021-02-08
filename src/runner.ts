@@ -158,6 +158,7 @@ const runCommand = async (test: Test, cwd: string, timeout: number): Promise<voi
     child.stdin.end()
   }
 
+  
   await waitForExit(child, timeout)
   log('----------------------')
   log('----------------------')
