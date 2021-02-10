@@ -38,5 +38,13 @@
     "prettier": "^1.19.1",
     "ts-jest": "^25.1.0",
     "typescript": "^3.7.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hikmatfarhat-ndu/my_autograding.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hikmatfarhat-ndu/my_autograding/issues"
+  },
+  "homepage": "https://github.com/hikmatfarhat-ndu/my_autograding#readme"
 }

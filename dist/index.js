@@ -2,27 +2,6 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 6690:
-/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
-
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var _src_autograding__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(4659);
-/* harmony import */ var _src_autograding__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_src_autograding__WEBPACK_IMPORTED_MODULE_0__);
-const core = __nccwpck_require__(3722);
-const github = __nccwpck_require__(8408);
-const { runInContext } = __nccwpck_require__(2184);
-
-try {
-  ;(0,_src_autograding__WEBPACK_IMPORTED_MODULE_0__.run)();
-} catch (error) {
-  console.error("from index.js")
-  //core.setFailed(error.message);
-}
-
-
-/***/ }),
-
 /***/ 140:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -28266,14 +28245,6 @@ module.exports = require("util");;
 
 /***/ }),
 
-/***/ 2184:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("vm");;
-
-/***/ }),
-
 /***/ 8761:
 /***/ ((module) => {
 
@@ -28317,46 +28288,6 @@ module.exports = require("zlib");;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => module['default'] :
-/******/ 				() => module;
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__nccwpck_require__.nmd = (module) => {
@@ -28372,6 +28303,6 @@ module.exports = require("zlib");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(6690);
+/******/ 	return __nccwpck_require__(4659);
 /******/ })()
 ;
